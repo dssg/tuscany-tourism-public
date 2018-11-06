@@ -1,0 +1,13 @@
+{"username": "USERNAME",
+ "season": "summer",
+ "country": "Brazil",
+ "EMB_SIZE": 32,
+ "WINDOW_SIZE": 5,
+ "N_EPOCHS": 300,
+ "N_CLUSTERS": 70,
+ "MIN_LENGTH": 0,
+ "MIN_COUNT": 2,
+ "train_model": true,
+ "apply_tsne": false,
+ "plot_clusters_italy": false,
+ "plot_clusters_tuscany": true}

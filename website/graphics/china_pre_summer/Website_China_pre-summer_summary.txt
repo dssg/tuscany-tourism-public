@@ -1,0 +1,2 @@
+In the last pre-summer season (May 2017) roughly 4 thousand tourists visited Tuscany from China. The data shows us 2 clusters. Each line in the graph above represents a cluster's typical path that tourists from China followed. These paths are displayed as differently-coloured lines in the map here above. 
+The first cluster, which we named Around Tuscany, spends on average 2.9 days in Italy, 2.5 of which in Tuscany. When in Tuscany, Around Tuscany spend at least a half day in Florence. 

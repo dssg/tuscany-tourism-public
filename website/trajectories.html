@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+
+  <title>DSSG EUROPE - Trajectory Analysis</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="./css/flexslider.min.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="./css/line-icons.min.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="./css/elegant-icons.min.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="./css/theme.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="./css/custom.css" rel="stylesheet" type="text/css" media="all" />
+  <!--[if gte IE 9]>
+    <link rel="stylesheet" type="text/css" href="../../../Desktop/website/css/ie9.css"/>
+    <![endif]-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700%7CRaleway:700' rel='stylesheet'
+    type='text/css'>
+  <script src="./js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+
+<body class="plot-page">
+  <div class="loader">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+
+  <div class="nav-container">
+
+    <nav class="top-bar">
+      <div class="container">
+
+        <div class="row utility-menu">
+          <div class="col-sm-12">
+            <div class="utility-inner clearfix">
+            </div>
+          </div>
+        </div>
+        <!--end of row-->
+
+        <div class="row nav-menu">
+
+          <div class="col-sm-9 col-md-10 columns">
+            <ul class="menu">
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="locations.html">Location Analysis</a>
+              </li>
+              <li>
+                <a href="personas.html">Persona Analysis</a>
+              </li>
+              <li class="selected">
+                <a href="trajectories.html">Trajectory Analysis</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--end of row-->
+
+        <div class="mobile-toggle">
+          <i class="icon icon_menu"></i>
+        </div>
+
+      </div>
+      <!--end of container-->
+    </nav>
+  </div>
+
+  <div>
+    <div class="container" style="margin-top:80px">
+      <section class="no-pad">
+        <div class="main-content">
+          <div id="total-museum" class="plot-section">
+            <h1>Trajectory Clustering Methodology</h1>
+            <p>
+              We clustered tourist trajectories by analysing the sequences of municipalities visited by individuals. This analysis finds the most frequent paths taken by tourists. For tourists of a set of different nationalities who visited Tuscany in different seasons, we cluster the trips they had taken in Italy based on the individual spatial trajectories, or sequences, categorised by the set of municipalities they visited  (e.g., Florence -> Pisa -> Livorno).
+            </p>
+            <p>
+              We used a Longest Common Subsequence based metric to compute the distance between trajectories, from which we compute a dissimilarity matrix between individuals. This is then clustered using the k-medoids algorithm to identify different clusters and a representative trajectories for each. This methodology takes into account the order (i.e., where did tourists come from and where do they go next), the timing (i.e., when does a tourist visit a municipality), and the duration of visit at each municipality for a given itinerary.
+            </p>
+          </div>
+
+
+
+          <div id="entries-per-museum" class="plot-section">
+            <div class=" row ">
+              <h1 style="margin:20px">Trajectory Clustering Graphics</h1>
+            </div>
+            <div>
+              <div class=" row breadcrumb" style="padding:20px">
+                <div class="col-lg-12 col-md-12 col-sm-12 ">
+                  <h3 style="margin:20px ">Choose from the filters below</h3>
+                </div>
+                <div class="row ">
+                  <div class="col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-12 " style="display: grid;">
+                    <label>Season</label>
+                    <select class="selectpicker " id="trajectory_season">
+                      <option>Pre-summer</option>
+                      <option>Summer</option>
+                      <option>Post-summer</option>
+                      <option>Winter</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 " style="display: grid">
+                    <label>Country</label>
+                    <select class="selectpicker " id="trajectory_country">
+                    </select>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 " style="display: grid">
+                    <label class="control-label">Cluster?</label>
+                    <select class="selectpicker " id="trajectory_summary" default="Summary">
+                      <option>Summary</option>
+                      <option>Cluster Based</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 " style="display: grid">
+                    <div id="trajectory_picker_form" hidden="true">
+                      <label class="">Cluster Picker</label>
+                      <select class="selectpicker " id="trajectory_cluster">
+                        <!--options will be filled automatically-->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                    <button class="btn btn-default " id="trajectoryGraphChange">Go</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="plotly-trajectories">
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 ">
+                <div id="trajectories-description">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </section>
+  </div>
+  </div>
+
+
+
+  <div class="footer-container">
+    <footer class="bg-primary short-2">
+      <div class="container">
+        <div class="right-footer">
+          <h6>Created by Bruno Del Papa, Kaushik Mohan, Orsolya Vasarhelyi, Yanbing Wang, Gabriele Simeone, Qiwei Han and Nuno Bras.</h6>
+          <div class="footer-nav">
+            <a href="DSSG_Florence_report.pdf">Report</a>
+            <a href="https://dssg.uchicago.edu/europe/">DSSG Europe</a>
+            <a href="https://github.com/DSSG2017/florence">Github</a>
+          </div>
+          <div class="disclaimer">All analysis and opinions contained here are the authors’ own, and are not necessarily held or endorsed by any
+            of the partners or data-providing agencies.</div>
+        </div>
+        <div class="left-footer">
+          <h5>Acknowledgements</h5>
+          <div class="small-text-block">
+            Toscana Promozione Turistica | Comune di Firenze, Assessorato al Turismo e Direzione Cultura | Linea Comune S.p.A | The Ufficio
+            di Statistica at Ministero dei Beni e delle Attività Culturali e del Turismo | Centro Studi Turistici di Firenze
+            | Toscana Aeroporti | Uffici informazioni turistiche della Città Metropolitana di Firenze | Uffici Informazioni
+            Turistiche del Comune di Firenze | Servizi alla Strada S.p.A. | Istituto Regionale Programmazione Economica Toscana
+            | Vodafone Italy | Collective Sensing (CS) Research Foundation | Nova School of Business and Economics | The
+            University of Chicago | Amazon Web Services
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/jquery.plugin.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/jquery.flexslider-min.js"></script>
+  <script src="./js/smooth-scroll.min.js"></script>
+  <script src="./js/skrollr.min.js"></script>
+  <script src="./js/spectragram.min.js"></script>
+  <script src="./js/scrollReveal.min.js"></script>
+  <script src="./js/isotope.min.js"></script>
+  <script src="./js/twitterFetcher_v10_min.js"></script>
+  <script src="./js/jquery.countdown.min.js"></script>
+  <script src="./js/dataDictionary.js"></script>
+  <script src="./js/new_data_dict_clusters.js"></script>
+  <script src="./js/scripts.js"></script>
+  <script>
+    $('a.yourlink').click(function (e) {
+      e.preventDefault();
+      window.open('http://yoururl1.com');
+      window.open('http://yoururl2.com');
+    });
+  </script>
+  <script>
+
+    // Cache selectors
+    var lastId,
+      topMenu = $(".content-nav"),
+      topMenuHeight = 0,
+      // All list items
+      menuItems = topMenu.find("a"),
+      // Anchors corresponding to menu items
+      scrollItems = menuItems.map(function () {
+        var item = $($(this).attr("href"));
+        if (item.length) { return item; }
+      });
+
+    // Bind click handler to menu items
+    // so we can get a fancy scroll animation
+    menuItems.click(function (e) {
+      var href = $(this).attr("href"),
+        offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 1;
+      $('html, body').stop().animate({
+        scrollTop: offsetTop
+      }, 300);
+      e.preventDefault();
+    });
+
+    // Bind to scroll
+    $(window).scroll(function () {
+      // Get container scroll position
+      var fromTop = $(this).scrollTop() + topMenuHeight;
+
+      // Get id of current scroll item
+      var cur = scrollItems.map(function () {
+        if ($(this).offset().top < fromTop)
+          return this;
+      });
+      // Get the id of the current element
+      cur = cur[cur.length - 1];
+      var id = cur && cur.length ? cur[0].id : "";
+
+      if (lastId !== id) {
+        lastId = id;
+        // Set/remove active class
+        menuItems
+          .parent().removeClass("active")
+          .end().filter("[href='#" + id + "']").parent().addClass("active");
+      }
+
+    });
+  </script>
+</body>
+
+</html>

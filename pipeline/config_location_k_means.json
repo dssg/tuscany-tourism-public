@@ -1,0 +1,7 @@
+{"username": "YOURNAME",
+ "season": "winter",
+ "country": "United States",
+ "nc":4,
+"names": ["cluster 1","cluster 2","cluster 3","cluster 4"],
+"colors": ["rgb(255,255,0)","rgb(34,139,34)","rgb(220,20,60)","rgb(70,130,180)","rgb(128,0,128)"],
+"mapbox_access_token":"YOUR MAPBOX TOKEN"}
